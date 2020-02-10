@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:db="http://www.mulesoft.org/schema/mule/db"
+	xmlns:dbserver="http://www.mulesoft.org/schema/mule/dbserver" xmlns:salesforce="http://www.mulesoft.org/schema/mule/salesforce"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+	xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools" xmlns="http://www.mulesoft.org/schema/mule/core" 
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd
+http://www.mulesoft.org/schema/mule/db http://www.mulesoft.org/schema/mule/db/current/mule-db.xsd
+http://www.mulesoft.org/schema/mule/dbserver/current/mule-dbserver.xsd">
+
+
+	<munit:config name="testing-test-suite.xml" />
+	<dbserver:config name="MUnit_DB_Server_Config" doc:name="MUnit DB Server Config" doc:id="7858f8d2-5c6f-458b-8fd9-6710abc635e4" >
+		<dbserver:connection csv="contacts.csv" database="TestDB" />
+	</dbserver:config>
+	<db:config name="Test_Database" doc:name="Database Config" doc:id="7a8fa0d0-ec33-4c84-b5ca-fda93d79e9d0" >
+		<db:generic-connection url="jdbc:h2:tcp://localhost/mem:TestDB" driverClassName="org.h2.Driver" />
+	</db:config>
+	<munit:test name="testing-test-suite-testingFlowTest" doc:id="ebc1256e-1586-452c-b9a6-a7e2157d8ea9" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to testingFlow" doc:id="5664e4db-e685-4e9e-bcf7-65cdfd39d295" name="testingFlow"/>
+		</munit:execution>
+	</munit:test>
+	<munit:test name="testing-test-suite-testingFlowTest1" doc:id="1c296735-1aa4-4d23-abe4-4a62448d66c6" description="Test">
+		<munit:execution >
+			<flow-ref doc:name="Flow-ref to testingFlow" doc:id="fabd1a77-e1f3-4577-8cfc-36ef0d872cae" name="testingFlow"/>
+		</munit:execution>
+	</munit:test>
+
+
+</mule>
